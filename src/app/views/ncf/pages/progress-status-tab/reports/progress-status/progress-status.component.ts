@@ -1,24 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonService } from 'src/app/core/services/common/common.service';
-import { DataService } from 'src/app/core/services/data.service';
-import { RbacService } from 'src/app/core/services/rbac-service.service';
-import { WrapperService } from 'src/app/core/services/wrapper.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { buildQuery, parseFilterToQuery, parseRbacFilter, parseTimeSeriesQuery } from 'src/app/utilities/QueryBuilder';
-import { config } from 'src/app/views/nishtha/config/nishtha_config';
-import { environment } from 'src/environments/environment';
+import {config} from '../../../../config/ncf_config';
+import { DataService } from 'src/app/core/services/data.service';
+import { WrapperService } from 'src/app/core/services/wrapper.service';
+import { RbacService } from 'src/app/core/services/rbac-service.service';
 @Component({
-  selector: 'app-implementation-status',
-  templateUrl: './implementation-status.component.html',
-  styleUrls: ['./implementation-status.component.scss']
+  selector: 'app-progress-status',
+  templateUrl: './progress-status.component.html',
+  styleUrls: ['./progress-status.component.scss']
 })
-export class ImplementationStatusComponent implements OnInit {
-  reportName: string = 'implementation_status';
+export class ProgressStatusComponent implements OnInit {
+
+  reportName: string = 'progress_status';
   filters: any = [];
   levels: any;
   reportData: any = {
-    reportName: "Implementation Status"
+    reportName: "Progress Status"
   };
-  title: string = 'Implementation Status'
+  title: string = 'Progress Status'
   selectedYear: any;
   selectedMonth: any;
   startDate: any;
@@ -27,7 +26,7 @@ export class ImplementationStatusComponent implements OnInit {
   compareDateRange: any = 30;
   filterIndex: any;
   rbacDetails: any;
-  status:any;
+
   @Output() exportReportData = new EventEmitter<any>();
 
   constructor(private readonly _dataService: DataService, private readonly _wrapperService: WrapperService, private _rbacService: RbacService) {
@@ -37,7 +36,6 @@ export class ImplementationStatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.status=environment.config;
   }
 
   getReportData(values: any): void {
@@ -50,7 +48,7 @@ export class ImplementationStatusComponent implements OnInit {
     let onLoadQuery;
     let currentLevel;
 
-    if (this.rbacDetails?.role) {
+    if (this.rbacDetails?.role !== null && this.rbacDetails.role !== undefined) {
       filters.every((filter: any) => {
         if (Number(this.rbacDetails?.role) === Number(filter.hierarchyLevel)) {
           queries = { ...filter?.actions?.queries }
@@ -81,6 +79,14 @@ export class ImplementationStatusComponent implements OnInit {
       }
       let query = buildQuery(onLoadQuery, defaultLevel, this.levels, this.filters, this.startDate, this.endDate, key, this.compareDateRange);
 
+      let metricFilter = [...filterValues].filter((filter: any) => {
+        return filter.filterType === 'metric'
+      })
+
+      filterValues = [...filterValues].filter((filter: any) => {
+        return filter.filterType !== 'metric'
+      })
+
       filterValues.forEach((filterParams: any) => {
         query = parseFilterToQuery(query, filterParams)
       });
@@ -107,6 +113,15 @@ export class ImplementationStatusComponent implements OnInit {
           this.exportReportData.emit(reportsData)
         }
       }
+      else if (query && key === 'map') {
+        this.reportData = await this._dataService.getMapReportData(query, options, metricFilter)
+        if (this.reportData?.data?.length > 0) {
+
+          let reportsData = { reportData: this.reportData.data, reportType: 'map', reportName: this.title }
+          this.exportReportData.emit(reportsData)
+        }
+      }
     })
   }
+
 }

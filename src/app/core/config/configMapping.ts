@@ -7,6 +7,9 @@ import { config as nishthaConfig } from '../../views/nishtha/config/nishtha_conf
 import { config as udiseConfig } from '../../views/udise/config/udise_config'
 import { config as nasConfig } from '../../views/nas/config/nas_config'
 import { config as dikshaConfig } from '../../views/diksha/config/diksha_config'
+import { config as ncf } from '../../views/ncf/config/ncf_config'
+import { config as  microimprovement} from '../../views/micro-improvements/config/microimprovements_config'
+import { config as  quiz} from '../../views/ncert-quiz/config/quiz_config';
 
 export const configFiles = {
   studentAttendance: studentAttendaceConfig,
@@ -17,7 +20,11 @@ export const configFiles = {
   nishtha: nishthaConfig,
   udise: udiseConfig,
   nas: nasConfig,
-  diksha: dikshaConfig
+  diksha: dikshaConfig,
+  ncf:ncf,
+  microimprovement:microimprovement,
+  quiz:quiz
+
 };
 
 export const programFolderNames = {
@@ -29,7 +36,10 @@ export const programFolderNames = {
   nishtha: 'nishtha',
   udise: 'udise',
   nas: 'nas',
-  diksha: 'diksha'
+  diksha: 'diksha',
+  ncf:"ncf",
+  microimprovement:"microimprovement",
+  quiz:"quiz"
 }
 
 export const stateProgramsFolderNames = {
@@ -41,5 +51,8 @@ export const stateProgramsFolderNames = {
   nishtha: '',
   udise: '',
   nas: '',
-  diksha: ''
+  diksha: '',
+  ncf:'',
+  microimprovement:'',
+  quiz:''
 }

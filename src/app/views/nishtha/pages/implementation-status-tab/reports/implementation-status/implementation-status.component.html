@@ -1,7 +1,11 @@
 <div class="grid grid-cols-12" *ngIf="reportData?.data?.length > 0">
-    <div class="xs:col-span-full">
+    <div class="xs:col-span-full" *ngIf="status == 'state'">
         <app-material-heat-chart-table [tableData]="reportData" [title]="title"></app-material-heat-chart-table>
     </div>
+    <ng-container *ngIf="(reportData?.data && reportData?.data?.length > 0) && status == 'national'">
+        <p class="text-center font-medium py-2 filename">{{title}}</p><br>
+        <app-leaflet-map [mapData]="reportData" ></app-leaflet-map>
+    </ng-container>
 </div>
 <div class="noData" *ngIf="reportData?.data?.length <= 0">
     No Data Found

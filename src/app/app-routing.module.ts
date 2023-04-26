@@ -108,6 +108,30 @@ routes = [
             (module) => module.DikshaModule
           ),
         canLoad: [AuthGuard]
+      },
+      {
+        path: 'ncf',
+        loadChildren: () =>
+          import('./views/ncf/ncf.module').then(
+            (module) => module.NcfModule
+          ),
+        canLoad: [AuthGuard]
+      },
+      {
+        path: 'microimprovement',
+        loadChildren: () =>
+          import('./views/micro-improvements/micro-improvements.module').then(
+            (module) => module.MicroImprovementsModule
+          ),
+        canLoad: [AuthGuard]
+      },
+      {
+        path: 'quizzes',
+        loadChildren: () =>
+          import('./views/ncert-quiz/ncert-quiz.module').then(
+            (module) => module.NcertQuizModule
+          ),
+        canLoad: [AuthGuard]
       }
     ],
   },
