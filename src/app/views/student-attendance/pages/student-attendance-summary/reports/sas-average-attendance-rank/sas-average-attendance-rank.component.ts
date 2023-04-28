@@ -121,12 +121,14 @@ export class SasAverageAttendanceRankComponent implements OnInit {
             this.maxDate = row['max_date']
           }
           columns.forEach((col: any) => {
-            if (row[col.property]) {
+            let cellValue = row[col.property];
+              if (cellValue === null || cellValue === undefined) {
+                cellValue = "N/A";
+              }
               row = {
                 ...row,
-                [col.property]: { value: row[col.property] }
+                [col.property]: { value: cellValue }
               }
-            }
           });
           return row
         }),

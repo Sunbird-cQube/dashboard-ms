@@ -35,6 +35,7 @@ export class MaterialHeatChartTableComponent implements OnInit, OnChanges, After
   }
 
   ngOnChanges(): void {
+    console.log(this.tableData)
     this.constructTable();
   }
 
