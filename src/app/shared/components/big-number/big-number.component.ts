@@ -11,7 +11,7 @@ export class BigNumberComponent implements OnInit, OnChanges {
   @Input() bigNumberReportData: any;
   averagePercentage: any;
   differenceInPercentage: any;
-  differenceIndicator: boolean = undefined;
+  differenceIndicator: any= undefined;
   valueSuffix: any;
   constructor() { }
 
@@ -39,6 +39,7 @@ export class BigNumberComponent implements OnInit, OnChanges {
     else {
       this.differenceIndicator = undefined;
     }
+    console.log(this.averagePercentage)
   }
 
   formatNumber(input: any) {

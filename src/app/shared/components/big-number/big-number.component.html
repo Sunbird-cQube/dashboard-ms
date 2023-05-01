@@ -1,4 +1,4 @@
-<div class="report-wrapper" *ngIf="averagePercentage">
+<div class="report-wrapper" *ngIf="averagePercentage !== undefined && averagePercentage !== null">
    
     <div class="average-wrapper">
         <h1 class="average-percentage">{{formatNumber(averagePercentage) + this.valueSuffix}}</h1>
@@ -23,6 +23,6 @@
         {{bigNumberReportData?.reportName}}
     </div>
 </div>
-<div class="noData" *ngIf="!averagePercentage || averagePercentage === undefined">
+<div class="noData" *ngIf="averagePercentage === null || averagePercentage === undefined">
     No Data Found
 </div>
