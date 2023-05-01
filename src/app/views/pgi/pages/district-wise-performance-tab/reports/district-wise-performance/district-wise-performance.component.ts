@@ -87,7 +87,7 @@ export class DistrictWisePerformanceComponent implements OnInit {
       filterValues = [...filterValues].filter((filter: any) => {
         return filter.filterType !== 'metric'
       })
-      
+
 
       filterValues.forEach((filterParams: any) => {
         query = parseFilterToQuery(query, filterParams)
@@ -116,6 +116,7 @@ export class DistrictWisePerformanceComponent implements OnInit {
         }
       }
       else if (query && key === 'map') {
+        console.log('metricFiltermetricFiltermetricFilter', metricFilter)
         this.reportData = await this._dataService.getMapReportData(query, options, metricFilter)
         if (this.reportData?.data?.length > 0) {
           let reportsData = { reportData: this.reportData.data, reportType: 'map', reportName: this.title }

@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
     });
 
     this._commonService.getDashboardMetrics().subscribe(async (menuResult: any) => {
-      debugger
       this.dashboardMenu = [];
       let rbacDetails;
       let menuData = menuResult?.data
@@ -82,11 +81,9 @@ export class DashboardComponent implements OnInit {
           this.dashboardMenu?.push(menuToDisplay);
 
           console.log('this.dashboardMenu---',this.dashboardMenu);
-          
+
         }
       }
-
-      debugger
     })
 
   }
