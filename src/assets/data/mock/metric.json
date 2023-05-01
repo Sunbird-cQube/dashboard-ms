@@ -90,11 +90,11 @@
         "orderBy": "11"
       },
       {
-        "programName": "New 3",
+        "programName": "Student Assessments",
         "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
-        "navigationUrl": "",
+        "navigationUrl": "/studentAssessements",
         "imageUrl": "nishtha.png",
-        "programID": "nishtha",
+        "programID": "studentAssessments",
         "orderBy": "12"
       }
     ]

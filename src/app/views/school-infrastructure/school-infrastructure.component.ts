@@ -23,7 +23,7 @@ export class SchoolInfrastructureComponent implements OnInit {
     1:'District wise % Schools meeting UDISE Criteria',
     2:'Block wise % Schools meeting UDISE Criteria',
     3:'Cluster wise % Schools meeting UDISE Criteria',
-    4:'School wise details of meeting UDISE Criteria								'
+    4:'School wise details of meeting UDISE Criteria'
   }
   rbacDetails: any;
   filters: any = [];
