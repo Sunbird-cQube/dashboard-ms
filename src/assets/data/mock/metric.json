@@ -1,101 +1,93 @@
 {
-    "message": "Metric data returned successfully",
-    "data": [
-      {
-        "programName": "Student Attendance",
-        "tooltip": "This program entails indicators to monitor reporting of attendance and presence of students in the jurisdiction.",
-        "navigationUrl": "/student-attendance",
-        "imageUrl": "student_attendance.png",
-        "programID": "studentAttendance",
-        "orderBy": "1"
-      },
-      {
-        "programName": "Teacher Attendance",
-        "tooltip": "This program entails indicators to monitor reporting of attendance and presence of teachers in the jurisdiction.",
-        "navigationUrl": "/teacher-attendance",
-        "imageUrl": "teacher_attendance.png",
-        "programID": "teacherAttendance",
-        "orderBy": "2"
-      },
-      {
-        "programName": "Review Meetings",
-        "tooltip": "This program entails indicators to monitor compliance of monthly review meetings being conducted at all levels.",
-        "navigationUrl": "/review-meetings",
-        "imageUrl": "review_meetings.png",
-        "programID": "reviewMeetings",
-        "orderBy": "3"
-      },
-      {
-        "programName": "PGI",
-        "tooltip": "Perfomance Grading Index",
-        "navigationUrl": "/pgi",
-        "imageUrl": "pgi.png",
-        "programID": "pgi",
-        "orderBy": "4"
-      },
-      {
-        "programName": "PM POSHAN",
-        "tooltip": "Pradhan Mantri Poshan Shakti Nirman",
-        "navigationUrl": "/pmposhan",
-        "imageUrl": "pmposhan.png",
-        "programID": "pmPoshan",
-        "orderBy": "5"
-      },
-      {
-        "programName": "UDISE+",
-        "tooltip": "Unified District Information System for Education",
-        "navigationUrl": "/udise",
-        "imageUrl": "udise.png",
-        "programID": "udise",
-        "orderBy": "6"
-      },
-      {
-        "programName": "NAS",
-        "tooltip": "National Achievement Survey",
-        "navigationUrl": "/nas",
-        "imageUrl": "nas.png",
-        "programID": "nas",
-        "orderBy": "7"
-      },
-      {
-        "programName": "DIKSHA",
-        "tooltip": "Digital Infrastructure for Knowledge Sharing",
-        "navigationUrl": "/diksha",
-        "imageUrl": "diksha.png",
-        "programID": "diksha",
-        "orderBy": "8"
-      },
-      {
-        "programName": "NISHTHA",
-        "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
-        "navigationUrl": "/nishtha",
-        "imageUrl": "nishtha.png",
-        "programID": "nishtha",
-        "orderBy": "9"
-      },
-      {
-        "programName": "School Infrastructure",
-        "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
-        "navigationUrl": "/schoolInfra",
-        "imageUrl": "nishtha.png",
-        "programID": "schoolInfrastructure",
-        "orderBy": "10"
-      },
-      {
-        "programName": "Student Progression",
-        "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
-        "navigationUrl": "/studentProgress",
-        "imageUrl": "nishtha.png",
-        "programID": "studentProgress",
-        "orderBy": "11"
-      },
-      {
-        "programName": "New 3",
-        "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
-        "navigationUrl": "",
-        "imageUrl": "nishtha.png",
-        "programID": "nishtha",
-        "orderBy": "12"
-      }
-    ]
-  }
+  "message": "Metric data returned successfully",
+  "data": [
+    {
+      "programName": "Student Attendance",
+      "tooltip": "This program entails indicators to monitor reporting of attendance and presence of students in the jurisdiction.",
+      "navigationUrl": "/student-attendance",
+      "imageUrl": "student_attendance.png",
+      "programID": "studentAttendance",
+      "orderBy": "1"
+    },
+    {
+      "programName": "Teacher Attendance",
+      "tooltip": "This program entails indicators to monitor reporting of attendance and presence of teachers in the jurisdiction.",
+      "navigationUrl": "/teacher-attendance",
+      "imageUrl": "teacher_attendance.png",
+      "programID": "teacherAttendance",
+      "orderBy": "2"
+    },
+    {
+      "programName": "Review Meetings",
+      "tooltip": "This program entails indicators to monitor compliance of monthly review meetings being conducted at all levels.",
+      "navigationUrl": "/review-meetings",
+      "imageUrl": "review_meetings.png",
+      "programID": "reviewMeetings",
+      "orderBy": "3"
+    },
+    {
+      "programName": "PGI",
+      "tooltip": "Perfomance Grading Index",
+      "navigationUrl": "/pgi",
+      "imageUrl": "pgi.png",
+      "programID": "pgi",
+      "orderBy": "4"
+    },
+    {
+      "programName": "PM POSHAN",
+      "tooltip": "Pradhan Mantri Poshan Shakti Nirman",
+      "navigationUrl": "/pmposhan",
+      "imageUrl": "pmposhan.png",
+      "programID": "pmPoshan",
+      "orderBy": "5"
+    },
+    {
+      "programName": "UDISE+",
+      "tooltip": "Unified District Information System for Education",
+      "navigationUrl": "/udise",
+      "imageUrl": "udise.png",
+      "programID": "udise",
+      "orderBy": "6"
+    },
+    {
+      "programName": "NAS",
+      "tooltip": "National Achievement Survey",
+      "navigationUrl": "/nas",
+      "imageUrl": "nas.png",
+      "programID": "nas",
+      "orderBy": "7"
+    },
+    {
+      "programName": "DIKSHA",
+      "tooltip": "Digital Infrastructure for Knowledge Sharing",
+      "navigationUrl": "/diksha",
+      "imageUrl": "diksha.png",
+      "programID": "diksha",
+      "orderBy": "8"
+    },
+    {
+      "programName": "NISHTHA",
+      "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
+      "navigationUrl": "/nishtha",
+      "imageUrl": "nishtha.png",
+      "programID": "nishtha",
+      "orderBy": "9"
+    },
+    {
+      "programName": "School Infrastructure",
+      "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
+      "navigationUrl": "/schoolInfra",
+      "imageUrl": "nishtha.png",
+      "programID": "schoolInfrastructure",
+      "orderBy": "10"
+    },
+    {
+      "programName": "Student Progression",
+      "tooltip": "NISHTHA is a capacity building programme for \"Improving Quality of School Education through Integrated Teacher Training\". It aims to build competencies among all the teachers and school principals at the elementary stage.",
+      "navigationUrl": "/studentProgress",
+      "imageUrl": "nishtha.png",
+      "programID": "studentProgress",
+      "orderBy": "11"
+    }
+  ]
+}
