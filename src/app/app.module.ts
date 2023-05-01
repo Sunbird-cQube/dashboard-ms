@@ -31,7 +31,7 @@ function initConfig(config: AppConfig){
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
    
   ],
   imports: [
