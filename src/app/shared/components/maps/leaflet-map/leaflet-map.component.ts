@@ -248,7 +248,6 @@ export class LeafletMapComponent implements OnInit, AfterViewInit, OnChanges {
           }
           // console.log("TEST", state)
           mapData?.data.forEach((state: any) => {
-            console.log("TEST", state)
             if (state.state_id && state.state_id == feature.properties.state_code) {
 
               color = parent.getLayerColor(state.indicator);
