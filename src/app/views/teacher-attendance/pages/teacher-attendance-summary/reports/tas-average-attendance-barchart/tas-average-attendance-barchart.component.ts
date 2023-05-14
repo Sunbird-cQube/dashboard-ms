@@ -52,6 +52,7 @@ export class TasAverageAttendanceBarchartComponent implements OnInit {
   }
 
   async getReportData(startDate = undefined, endDate = undefined): Promise<void> {
+    console.log('innnn bar report data');
     this.startDate = startDate;
     this.endDate = endDate;
     let reportConfig = config

@@ -1,0 +1,9 @@
+<div class="col-span-full items-center">
+    <ng-container *ngIf="tableReportData">
+        <app-time-series-chart [title]="'Test'" [options]="tableReportData"></app-time-series-chart>
+    </ng-container>
+</div>
+<div class="noData" *ngIf="!(tableReportData)">
+    No Data Found
+</div>
+

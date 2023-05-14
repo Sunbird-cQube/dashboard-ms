@@ -49,6 +49,7 @@ import { BreadcrumbComponentComponent } from './components/breadcrumb-component/
 import { SbBarChartComponent } from './components/charts/sb-bar-chart/sb-bar-chart.component';
 import { DashletModule, DataService } from '@project-sunbird/sb-dashlet-v14';
 import { MaterialHeatChartDrilldownTableComponent } from './components/tables/material-heat-chart-drilldown-table/material-heat-chart-drilldown-table.component';
+import {TimeSeriesComponent} from "./components/charts/time-series/time-series.component";
 
 const IMPORTS: any[] = [
   ReactiveFormsModule,
@@ -104,7 +105,8 @@ const DECLARATIONS = [
   PopupOptionsComponent,
   BreadcrumbComponentComponent,
   SbBarChartComponent,
-  MaterialHeatChartDrilldownTableComponent
+  MaterialHeatChartDrilldownTableComponent,
+  TimeSeriesComponent
 ];
 
 @NgModule({

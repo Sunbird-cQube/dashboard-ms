@@ -37,6 +37,9 @@
                 <app-tas-average-attendance-barchart #averageAttendanceBarchart></app-tas-average-attendance-barchart>
             </div>
 
+            <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('tas_attendance_time_series', 'timeSeries')" id="time-series">
+                <app-attendance-time-series #averageAttendanceTimeSeries></app-attendance-time-series>
+            </div>
         </div>
     </div>
 </div>
