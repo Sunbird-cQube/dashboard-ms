@@ -173,7 +173,7 @@ export const config = {
                 "hierarchyLevel": "1",
                 "actions": {
                     "queries": {
-                        "bigNumber1": "select sum(sum) as total_schools from datasets.pm_poshan_category_value_categorypm where category_name = 'total_schools'",
+                        "bigNumber1": "select week, year, (sum(sum)*100)/sum(count) from datasets.pal_adhigamstatus_weekly_district group by week, year",
                         "bigNumber2": "select sum(sum) as total_meals_served from datasets.pm_poshan_total_meals_served_daily_district",
                         "bigNumber3": "select count(distinct(district_id)) as total_districts from datasets.pm_poshan_total_meals_served_daily_district",
                         "bigNumber4": "",
@@ -184,7 +184,7 @@ export const config = {
         ],
         "options": {
             "bigNumber": {
-                "title": ['Total Schools','Total Meals Served','Total Districts','Total States/UTs Participating'],
+                "title": ['Total Teachers','Total Meals Served','Total Districts','Total States/UTs Participating'],
                 "valueSuffix": ['','','',''],
                 "property": ['total_schools','total_meals_served','total_districts','total_states']
             }
