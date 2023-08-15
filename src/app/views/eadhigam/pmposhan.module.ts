@@ -16,6 +16,10 @@ import { StateWiseProgressStatusComponent } from './pages/state-wise-progress-st
 import { EtbCoverageStatusComponent } from './pages/progress-status-tab/reports/etb-coverage-status/etb-coverage-status.component';
 import { TeacherBignumberMetricsComponent } from './pages/implementation-status-tab/reports/teacher-bignumber-metrics/teacher-bignumber-metrics.component';
 import { TeacherTableComponent } from './pages/implementation-status-tab/reports/teacher-table/teacher-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { AppUsageTableComponent } from './pages/progress-status-tab/reports/app-usage-table/app-usage-table.component';
+import { HomeAssignmentComponent } from './pages/progress-status-tab/reports/home-assignment/home-assignment.component';
+import { RemedialDataComponent } from './pages/progress-status-tab/reports/remedial-data/remedial-data.component';
 
 @NgModule({
 declarations: [
@@ -29,7 +33,11 @@ declarations: [
     StateWiseProgressStatusComponent,
     EtbCoverageStatusComponent,
     TeacherBignumberMetricsComponent,
-    TeacherTableComponent
+    TeacherTableComponent,
+    AppUsageTableComponent,
+    HomeAssignmentComponent,
+    RemedialDataComponent,
+    
 ],
 imports: [
     DashletModule.forRoot({
@@ -38,7 +46,8 @@ imports: [
     MatTabsModule,
     SharedModule,
     CommonModule,
-    PmPoshanRoutingModule
+    PmPoshanRoutingModule,
+    MatTableModule
 ]
 })
 export class PmPoshanModule { }

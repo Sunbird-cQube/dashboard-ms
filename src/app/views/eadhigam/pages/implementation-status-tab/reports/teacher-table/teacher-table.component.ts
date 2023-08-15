@@ -41,6 +41,7 @@ export class TeacherTableComponent implements OnInit {
   }
 
   getReportData(values: any): void {
+    console.log('ram ram:',{values})
     let { filterValues, timeSeriesValues } = values ?? {};
     this.startDate = timeSeriesValues?.startDate;
     this.endDate = timeSeriesValues?.endDate;
@@ -69,6 +70,7 @@ export class TeacherTableComponent implements OnInit {
     }
 
     Object.keys(queries).forEach(async (key: any) => {
+      console.log("ram ram",{queries})
       if (key.toLowerCase().includes('comparison')) {
         let endDate = new Date();
         let days = endDate.getDate() - this.compareDateRange;
@@ -94,12 +96,15 @@ export class TeacherTableComponent implements OnInit {
       });
 
       if (query && key === 'table') {     
+        console.log("ram ram:",{query})
         this.reportData = await this._dataService.getTableReportData(query, options);
         if (this.reportData?.data?.length > 0) {
           let reportsData = { reportData: this.reportData.data, reportType: 'table', reportName: this.title }
+         console.log("ram2:",{reportsData})
           this.exportReportData.emit(reportsData)
         }
       }
+    
       else if (query && key === 'bigNumber') {
         this.reportData = await this._dataService.getBigNumberReportData(query, options, 'averagePercentage', this.reportData);
       }

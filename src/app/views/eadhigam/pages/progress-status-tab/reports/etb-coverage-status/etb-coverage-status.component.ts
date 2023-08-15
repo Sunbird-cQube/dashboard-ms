@@ -12,6 +12,12 @@ import { config } from 'src/app/views/eadhigam/config/eadhigam_config';
   styleUrls: ['./etb-coverage-status.component.scss']
 })
 export class EtbCoverageStatusComponent implements OnInit {
+ // dataSource: MatTableDataSource<any>;
+  // appUsageData: MatTableDataSource<any>;
+  // homeworkAssignmentData: MatTableDataSource<any>;
+  // remedialTestData: MatTableDataSource<any>;
+  // displayedColumns: string[] = ['block', 'school', 'remedial', 'grade', 'student_name', 'student_srn', 'district'];
+
   reportName: string = 'student_status';
   filters: any = [];
   levels: any;
@@ -38,6 +44,9 @@ export class EtbCoverageStatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.appUsageData = new MatTableDataSource(appUsageData);
+    // this.homeworkAssignmentData = new MatTableDataSource(homeworkAssignmentData);
+    // this.remedialTestData = new MatTableDataSource(remedialTestData);
   }
 
   getReportData(values: any): void {

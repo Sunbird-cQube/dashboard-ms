@@ -29,20 +29,20 @@
                 <app-progress-status #progressStatus (exportReportData)="csvDownload($event)"></app-progress-status>
             </div> -->
             <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table')"
-                id="table1">
-                <app-teacher-table #teacherStatusTable1 title="table1"
+                id="table">
+                <app-teacher-table #teacherStatusTable1 title="Total App Usage ( in Min.)"
                     (exportReportData)="csvDownload($event)"></app-teacher-table>
             </div>
             <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table1')"
-            id="table2">
-            <app-teacher-table #teacherStatusTable2  title="table2"
+            id="table1">
+            <app-teacher-table #teacherStatusTable2  title="Total Homework / Assignments"
                 (exportReportData)="csvDownload($event)"></app-teacher-table>
         </div>
-        <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table2')"
+        <!-- <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table2')"
         id="table3">
         <app-teacher-table #teacherStatusTable3  title="table3"
             (exportReportData)="csvDownload($event)"></app-teacher-table>
-    </div>
+    </div> -->
         </div>
 
     </div>

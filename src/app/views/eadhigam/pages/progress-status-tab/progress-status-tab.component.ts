@@ -5,6 +5,10 @@ import { config } from '../../config/eadhigam_config';
 import { ProgressStatusComponent } from './reports/progress-status/progress-status.component';
 import { environment } from 'src/environments/environment';
 import { EtbCoverageStatusComponent } from './reports/etb-coverage-status/etb-coverage-status.component';
+import { AppUsageTableComponent } from './reports/app-usage-table/app-usage-table.component';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { appUsageData, homeworkAssignmentData, remedialTestData } from '../../config/student_records';
 
 @Component({
     selector: 'app-progress-status-tab',
@@ -12,6 +16,10 @@ import { EtbCoverageStatusComponent } from './reports/etb-coverage-status/etb-co
     styleUrls: ['./progress-status-tab.component.scss']
 })
 export class ProgressStatusTabComponent implements OnInit, AfterViewInit {
+    appUsageData:any;
+    homeworkAssignmentData: any;
+    remedialTestData: any;
+    displayedColumns: string[] = ['block', 'school', 'remedial', 'grade', 'student_name', 'student_srn', 'district'];
 
     bigNumberReports: any = {};
     minYear: any;
@@ -31,11 +39,23 @@ export class ProgressStatusTabComponent implements OnInit, AfterViewInit {
     hasCommonFilters: boolean = true;
     NVSK: boolean = true;
 
+    displayedColumnsHeadsAppUsage: string[] = [  "block",  "school",  "grade",  "student_name",  "student_srn"]
+    displayedColumnsAppUsage: any[] = [
+    { title: 'Block', column: 'block' },
+    { title: 'School', column: 'school' },
+    { title: 'Remedial', column: 'remedial' },
+    { title: 'Grade', column: 'grade' },
+    { title: 'Student Name', column: 'student_name' },
+    { title: 'Student SRN', column: 'student_srn' },
+ 
+  ];
+
     @ViewChild('progressStatus') progressStatus: ProgressStatusComponent;
     @ViewChild('etbCoverageStatus') etbCoverageStatus: EtbCoverageStatusComponent;
     @ViewChild('etbCoverageStatus1') etbCoverageStatus1: EtbCoverageStatusComponent;
     @ViewChild('etbCoverageStatus2') etbCoverageStatus2: EtbCoverageStatusComponent;
-    
+    @ViewChild('appUsageTable') appUsageTable: AppUsageTableComponent;
+
     @Input() bigNumberMetrics: any = [];
 
     constructor(private _wrapperService: WrapperService, private _rbacService: RbacService) {
@@ -43,19 +63,24 @@ export class ProgressStatusTabComponent implements OnInit, AfterViewInit {
         this._rbacService.getRbacDetails().subscribe((rbacDetails: any) => {
             this.rbacDetails = rbacDetails;
         })
-        if(environment.config === 'VSK') {
+        if (environment.config === 'VSK') {
             this.NVSK = false
         }
     }
 
     async ngOnInit(): Promise<void> {
-        // this.renderReports();
+
+        this.appUsageData =new MatTableDataSource(appUsageData) ;
+        // this.homeworkAssignmentData = new MatTableDataSource(homeworkAssignmentData);
+        // this.remedialTestData = new MatTableDataSource(remedialTestData);
     }
+
+
 
     async ngAfterViewInit(): Promise<void> {
         // if (this.hasCommonFilters) {
         //     console.log("venom: true")
-            
+
         // }
         // if (this.startDate === undefined && this.endDate === undefined && this.hasTimeSeriesFilters) {
         //     console.log("venom: true 2")
@@ -66,19 +91,20 @@ export class ProgressStatusTabComponent implements OnInit, AfterViewInit {
         //     this.progressStatus?.getReportData({ timeSeriesValues: { startDate: startDate?.toISOString().split('T')[0], endDate: endDate?.toISOString().split('T')[0] } });
         // }
         this.filters = await this._wrapperService.constructCommonFilters(config.filters);
-            this.progressStatus?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-            this.etbCoverageStatus?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-            this.etbCoverageStatus1?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-            this.etbCoverageStatus2?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+
+        this.progressStatus?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+        this.etbCoverageStatus?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+        this.etbCoverageStatus1?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+        this.etbCoverageStatus2?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
 
     }
 
     checkReport(key: string, reportType: string): Boolean {
-        
+
         let reportConfig = config;
-        console.log("venom: true 3",{config})
         let flag = false;
         reportConfig[key]?.filters?.forEach((filter: any) => {
+
             if (Number(filter.hierarchyLevel) === Number(this.rbacDetails?.role) && Object.keys(filter?.actions?.queries).includes(reportType)) {
                 flag = true
             }
@@ -110,7 +136,6 @@ export class ProgressStatusTabComponent implements OnInit, AfterViewInit {
 
 
     importBigNumberMetrics(bigNumberMetric: any) {
-        console.log("venom:6",{bigNumberMetric})
         this.bigNumberMetrics[bigNumberMetric.ind] = bigNumberMetric.data
     }
 }

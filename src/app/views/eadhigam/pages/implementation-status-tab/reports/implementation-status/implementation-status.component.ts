@@ -40,12 +40,14 @@ export class ImplementationStatusComponent implements OnInit {
   }
 
   getReportData(values: any): void {
+   console.log("_ram:",{values})
     let { filterValues, timeSeriesValues } = values ?? {};
     this.startDate = timeSeriesValues?.startDate;
     this.endDate = timeSeriesValues?.endDate;
     let reportConfig = config
 
     let { timeSeriesQueries, queries, levels, defaultLevel, filters, options } = reportConfig[this.reportName];
+    console.log("_ram:",{filters})
     let onLoadQuery;
     let currentLevel;
 
@@ -68,6 +70,7 @@ export class ImplementationStatusComponent implements OnInit {
     }
 
     Object.keys(queries).forEach(async (key: any) => {
+    
       if (key.toLowerCase().includes('comparison')) {
         let endDate = new Date();
         let days = endDate.getDate() - this.compareDateRange;
@@ -94,9 +97,18 @@ export class ImplementationStatusComponent implements OnInit {
       });
 
       if (query && key === 'table') {
+        console.log("ram ram: hello",{query})
         this.reportData = await this._dataService.getTableReportData(query, options);
         if (this.reportData?.data?.length > 0) {
           let reportsData = { reportData: this.reportData.data, reportType: 'table', reportName: this.title }
+          this.exportReportData.emit(reportsData)
+        }
+      }
+      if (query && key === 'table1') {
+        console.log("_ram ram: hello",{query,name:this.title})
+        this.reportData = await this._dataService.getTableReportData(query, options);
+        if (this.reportData?.data?.length > 0) {
+          let reportsData = { reportData: this.reportData.data, reportType: 'table1', reportName: this.title }
           this.exportReportData.emit(reportsData)
         }
       }

@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
             import { RbacService } from 'src/app/core/services/rbac-service.service';
             import { WrapperService } from 'src/app/core/services/wrapper.service';
             import { buildQuery, parseFilterToQuery, parseRbacFilter, parseTimeSeriesQuery } from 'src/app/utilities/QueryBuilder';
+import { getLatitude, getLongitude } from 'src/app/views/eadhigam/config/district_lat_long';
             import { config } from 'src/app/views/eadhigam/config/eadhigam_config';
 import { ProgressStatusTabComponent } from '../../progress-status-tab.component';
             
@@ -68,6 +69,7 @@ import { ProgressStatusTabComponent } from '../../progress-status-tab.component'
                 }
             
                 Object.keys(queries).forEach(async (key: any) => {
+                 
                   if (key.toLowerCase().includes('comparison')) {
                     let endDate = new Date();
                     let days = endDate.getDate() - this.compareDateRange;
@@ -118,9 +120,15 @@ import { ProgressStatusTabComponent } from '../../progress-status-tab.component'
                     }
                   }
                   else if (query && key === 'map') {
+                  
                     this.reportData = await this._dataService.getMapReportData(query, options, metricFilter)
-                    if (this.reportData?.data?.length > 0) {
-                      let reportsData = { reportData: this.reportData.data, reportType: 'map', reportName: this.title, downloadConfig: options?.downloadConfig }
+                    console.log("shri-ram:",{bf:this.reportData})
+                    if (this.reportData?.data?.length > 0) {  
+                     const newData=this.reportData.data.map((record)=>({...record,Latitude:getLatitude(record.district_name),Longitude:getLongitude(record.district_name)}))
+                    //  let reportsData = { reportData: this.reportData.data, reportType: 'map', reportName: this.title, downloadConfig: options?.downloadConfig }
+                      let reportsData = {data:newData,options, reportData: newData, reportType: 'map', reportName: this.title, downloadConfig: options?.downloadConfig }
+                     this.reportData=reportsData
+                      console.log("shri-ram:",{reportsData})
                       // this.exportReportData.emit(reportsData)
                       this.csv.csvDownload(reportsData)
 

@@ -33,7 +33,7 @@ export class ImplementationStatusTabComponent implements OnInit {
     @ViewChild('implementationstatus') implementationStatus:ImplementationStatusComponent ;
     @ViewChild('teacherStatusTable1') teacherStatusTable1:ImplementationStatusComponent ;
     @ViewChild('teacherStatusTable2') teacherStatusTable2:ImplementationStatusComponent ;
-    @ViewChild('teacherStatusTable3') teacherStatusTable3:ImplementationStatusComponent ;
+   // @ViewChild('teacherStatusTable3') teacherStatusTable3:ImplementationStatusComponent ;
     @Input() bigNumberMetrics: any = [];
 
   constructor(private _wrapperService: WrapperService, private _rbacService: RbacService) {
@@ -62,17 +62,19 @@ export class ImplementationStatusTabComponent implements OnInit {
     //     this.implementationStatus?.getReportData({ timeSeriesValues: { startDate: startDate?.toISOString().split('T')[0], endDate: endDate?.toISOString().split('T')[0] } });
     //     }
         this.filters = await this._wrapperService.constructCommonFilters(config.filters, this.tabName);
-    this.implementationStatus?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-    this.teacherStatusTable1?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-    this.teacherStatusTable2?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-    this.teacherStatusTable3?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+       
+        this.implementationStatus?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+        this.teacherStatusTable1?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
+        this.teacherStatusTable2?.getReportData({ filterValues: this.filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
      }
+
     checkReport(key: string, reportType: string): Boolean {
+    
     let reportConfig = config;
     let flag = false;
     reportConfig[key]?.filters?.forEach((filter: any) => {
         if (Number(filter.hierarchyLevel) === Number(this.rbacDetails?.role) && Object.keys(filter?.actions?.queries).includes(reportType)) {
-        flag = true
+          flag = true
         }
     })
     return flag
@@ -85,12 +87,10 @@ export class ImplementationStatusTabComponent implements OnInit {
     }
 
     filtersUpdated(filters: any) {
+      console.log("__ram:",{filters})
     this.reportsData = [];
     this.implementationStatus?.getReportData({ filterValues: filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-    // this.teacherStatusTable1?.getReportData({ filterValues: filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-    // this.teacherStatusTable2?.getReportData({ filterValues: filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-    // this.teacherStatusTable3?.getReportData({ filterValues: filters.map((filter) => { return { ...filter, columnName: filter.valueProp, filterType: filter.id } }) });
-        }
+    }
 
     timeSeriesUpdated(event: any): void {
     this.startDate = event?.startDate?.toDate().toISOString().split('T')[0]

@@ -6,8 +6,9 @@ export const config = {
             "labelProp": "category_name",
             "valueProp": "category_name",
             "id": "metric",
-            "query": "select category_name from dimensions.categorypm"
+            "query": "select category_name from dimensions.category"
         },
+        
     ],
     implementation_status:{
         "label": "Implementation Status",
@@ -101,19 +102,6 @@ export const config = {
         "label": "Teacher Status",
         "filters":
             [
-                // {
-                //     "name": "National",
-                //     "hierarchyLevel": "0",
-                //     "actions": {
-                //         "queries":
-                //         {
-                //             "map": "select latitude, longitude, category_name as category_name,t2.district_name,t1.district_id, cast(sum(t1.sum) as numeric) as total_count FROM datasets.pm_poshan_category_daily_district0categorypm as t1 join dimensions.district as t2 on t1.district_id = t2.district_id group by t1.district_id,t2.district_name, category_name, latitude, longitude"
-                       
-                //         },
-                //         "level": "state",
-                //         "nextLevel": "district"
-                //     }
-                // },
                 {
                     "name": "State",
                     "hierarchyLevel": "1",
@@ -121,9 +109,9 @@ export const config = {
                         "queries":
                         {
                             "map": "select latitude, longitude, category_name as category_name,t2.district_name,t1.district_id, cast(sum(t1.sum) as numeric) as total_count FROM datasets.pm_poshan_category_district0categorypm as t1 join dimensions.district as t2 on t1.district_id = t2.district_id group by t1.district_id,t2.district_name, category_name, latitude, longitude",
-                            "table": "select week, year, district_name ,(sum(sum)*100)/sum(count) from datasets.pal_adhigamstatusstudent_weekly_district group by week, year, district_name",
-                            "table1": "select week, year, district_name ,(sum(sum)*100)/sum(count) from datasets.pal_adhigamstatusstudent_weekly_district group by week, year, district_name",
-                            "table2": "select week, year, district_name ,(sum(sum)*100)/sum(count) from datasets.pal_adhigamstatusstudent_weekly_district group by week, year, district_name",
+                            "table": "SELECT teacher.teacher_id, teacher_name, sum as total_usage FROM dimensions.teacher inner join datasets.pal_app_usage_weekly_teacher as app_usage on teacher.teacher_id = app_usage.teacher_id where week='27' and year = '2023' and sum != 'NaN' order by total_usage desc limit 10",
+                            "table1": "SELECT teacher.teacher_id, teacher_name, sum as total_assignment FROM dimensions.teacher inner join datasets.pal_assignments_weekly_teacher as pawt on teacher.teacher_id = pawt.teacher_id where week='27' and year = '2023' and sum != 'NaN' order by total_assignment desc limit 10",
+                           
 
                         },
                         "level": "district",
@@ -138,124 +126,47 @@ export const config = {
                 "excludeColumns": ['indicator', 'total_count', 'category_name', 'tooltip', 'Latitude', 'Longitude']
             },
             "table": {
-                "groupByNeeded": true,
-                "metricLabelProp": "class",
-                "metricValueProp": "performance",
-                "fillEmptyCell": "N/A",
+                 "fillEmptyCell": "N/A",
                 "columns": [
-
-                    {
-                        name: "Subject",
-                        property: "subject",
+                   {
+                        name: "Teacher Name",
+                        property: "teacher_name",
                         class: "text-center"
                     },
                     {
-                        name: "Class",
-                        groupByNeeded: true,
-                        property: "class",
-                        class: "text-center",
-                        isHeatMapRequired: true,
-                        color: {
-                            type: "percentage",
-                            values: [
-                                {
-                                    color: "#007000",
-                                    breakPoint: 70
-                                },
-                                {
-                                    color: "#FFBF00",
-                                    breakPoint: 40
-                                },
-                                {
-                                    color: "#D2222D",
-                                    breakPoint: 0
-                                }
-                            ]
-                        },
-                    }
+                        name: "Teacher Id",
+                        property: "teacher_id",
+                        class: "text-center"
+                    },
+                    {
+                        name: "Total Usage",
+                        property: "total_usage",
+                        class: "text-center"
+                    },
+                 
                 ],
-                "sortByProperty": "subject",
-                "sortDirection": "asc"
             },
             "table1": {
-                "groupByNeeded": true,
-                "metricLabelProp": "class",
-                "metricValueProp": "performance",
                 "fillEmptyCell": "N/A",
                 "columns": [
-
                     {
-                        name: "Subject",
-                        property: "subject",
+                        name: "Teacher Name",
+                        property: "teacher_name",
                         class: "text-center"
                     },
                     {
-                        name: "Class",
-                        groupByNeeded: true,
-                        property: "class",
-                        class: "text-center",
-                        isHeatMapRequired: true,
-                        color: {
-                            type: "percentage",
-                            values: [
-                                {
-                                    color: "#007000",
-                                    breakPoint: 70
-                                },
-                                {
-                                    color: "#FFBF00",
-                                    breakPoint: 40
-                                },
-                                {
-                                    color: "#D2222D",
-                                    breakPoint: 0
-                                }
-                            ]
-                        },
-                    }
-                ],
-                "sortByProperty": "subject",
-                "sortDirection": "asc"
-            },
-            "table2": {
-                "groupByNeeded": true,
-                "metricLabelProp": "class",
-                "metricValueProp": "performance",
-                "fillEmptyCell": "N/A",
-                "columns": [
-
-                    {
-                        name: "Subject",
-                        property: "subject",
+                        name: "Teacher Id",
+                        property: "teacher_id",
                         class: "text-center"
                     },
                     {
-                        name: "Class",
-                        groupByNeeded: true,
-                        property: "class",
-                        class: "text-center",
-                        isHeatMapRequired: true,
-                        color: {
-                            type: "percentage",
-                            values: [
-                                {
-                                    color: "#007000",
-                                    breakPoint: 70
-                                },
-                                {
-                                    color: "#FFBF00",
-                                    breakPoint: 40
-                                },
-                                {
-                                    color: "#D2222D",
-                                    breakPoint: 0
-                                }
-                            ]
-                        },
-                    }
+                        name: "Total Assignment",
+                        property: "total_assignment",
+                        class: "text-center"
+                    },
+                 
                 ],
-                "sortByProperty": "subject",
-                "sortDirection": "asc"
+               
             },
             "map": {
                 "metricLabelProp": "category_name",
@@ -304,6 +215,27 @@ export const config = {
                 "fileName": "Student Status",
                 "excludeColumns": ['indicator', 'total_count', 'category_name', 'tooltip', 'Latitude', 'Longitude']
             },
+            "map": {
+                "drillDownConfig": {
+                    "enableDrillDown": true,
+                    "allowedLevels": [1,2,3]
+                },
+                "indicatorType": "percent",
+                "indicator": "eadhigam_perct",
+                "legend": { "title": "Student Status" },
+                "tooltipMetrics": [
+                    {
+                        "valuePrefix": "District Name: ",
+                        "value": "district_name",
+                        "valueSuffix": "\n"
+                    },
+                    {   
+                        "valuePrefix": "Percent:",
+                        "value": "eadhigam_perct",
+                        "valueSuffix": "\n"
+                    }
+                ]
+            },
             "table": {
                 "groupByNeeded": true,
                 "metricLabelProp": "class",
@@ -424,25 +356,7 @@ export const config = {
                 "sortByProperty": "subject",
                 "sortDirection": "asc"
             },
-            "map": {
-                "metricLabelProp": "eadhigam_perct",
-                "metricValueProp": "eadhigam_perct",
-                "groupByColumn": "district_id",
-                "metricFilterNeeded": true,
-                "legend": { "title": "Student Status" },
-                "tooltipMetrics": [
-                    {
-                        "valuePrefix": "District Name: ",
-                        "value": "district_name",
-                        "valueSuffix": "\n"
-                    },
-                    {   
-                        "valuePrefix": "",
-                        "value": "eadhigam_perct",
-                        "valueSuffix": "\n"
-                    }
-                ]
-            }
+            
         }
     },
     teacher_metrics:{
