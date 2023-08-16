@@ -108,7 +108,6 @@ export const config = {
                     "actions": {
                         "queries":
                         {
-                            "map": "select latitude, longitude, category_name as category_name,t2.district_name,t1.district_id, cast(sum(t1.sum) as numeric) as total_count FROM datasets.pm_poshan_category_district0categorypm as t1 join dimensions.district as t2 on t1.district_id = t2.district_id group by t1.district_id,t2.district_name, category_name, latitude, longitude",
                             "table": "SELECT teacher.teacher_id, teacher_name, sum as total_usage FROM dimensions.teacher inner join datasets.pal_app_usage_weekly_teacher as app_usage on teacher.teacher_id = app_usage.teacher_id where week='27' and year = '2023' and sum != 'NaN' order by total_usage desc limit 10",
                             "table1": "SELECT teacher.teacher_id, teacher_name, sum as total_assignment FROM dimensions.teacher inner join datasets.pal_assignments_weekly_teacher as pawt on teacher.teacher_id = pawt.teacher_id where week='27' and year = '2023' and sum != 'NaN' order by total_assignment desc limit 10",
                            
