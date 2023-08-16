@@ -1,0 +1,49 @@
+<div class="col-span-full tab-wrapper">
+    <div class="filter-row grid grid-cols-4">
+        <div class="col-start-4 col-end-5 download-button" id="downloadbutton" >
+            <!-- <app-popup-options [data]="reportsData" [reportName]="'pgi'" ></app-popup-options> -->
+            <app-download-button [data]="reportsData"></app-download-button>
+        </div>
+    </div>
+    <div class="reports-row" >
+        <div *ngIf="checkReport('teacher_metrics', 'bigNumber1')" id="bignumber1">
+            <app-teacher-bignumber-metrics (exportReportData)="importBigNumberMetrics($event)"></app-teacher-bignumber-metrics>
+        </div>
+        <div class="row-wrapper grid grid-cols-5 gap-4" >
+            <div class="col-span-2 xmd:col-span-1  bignumber-container" id="bignumber1"
+                *ngFor="let bigNumberData of bigNumberMetrics; let index = index">
+                <div *ngIf="checkReport('teacher_metrics', 'bigNumber'+(index+1))">
+                    <app-big-number [bigNumberReportData]="bigNumberData"></app-big-number>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row-wrapper grid grid-cols-1 gap-4">
+            <div class="col-span-2 xmd:col-span-1 div-shadow" *ngIf="checkReport('teacher_status', 'map')"
+                id="map">
+                <app-implementation-status #implementationstatus
+                    (exportReportData)="csvDownload($event)"></app-implementation-status>
+            </div>
+        </div> -->
+         <div class="row-wrapper grid">
+            <!-- <div class="col-span-1 xmd:col-span-1 div-shadow" *ngIf="checkReport('teacher_status', 'map')" id="map">
+                <app-progress-status #progressStatus (exportReportData)="csvDownload($event)"></app-progress-status>
+            </div> -->
+            <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table')"
+                id="table">
+                <app-teacher-table #teacherStatusTable1 title="Total App Usage ( in Min.)"
+                    (exportReportData)="csvDownload($event)"></app-teacher-table>
+            </div>
+            <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table1')"
+            id="table1">
+            <app-teacher-table #teacherStatusTable2  title="Total Homework / Assignments"
+                (exportReportData)="csvDownload($event)"></app-teacher-table>
+        </div>
+        <!-- <div class="col-span-2 xmd:col-span-2 div-shadow" *ngIf="checkReport('teacher_status', 'table2')"
+        id="table3">
+        <app-teacher-table #teacherStatusTable3  title="table3"
+            (exportReportData)="csvDownload($event)"></app-teacher-table>
+    </div> -->
+        </div>
+
+    </div>
+</div>

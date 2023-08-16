@@ -1,0 +1,27 @@
+<div class="metric-card-wrapper">
+    <div class="grid gap-4 grid-cols-6 xmd:grid-cols-12">
+        <div class="col-span-12">
+            <p class="program-title">e-Adhigam</p>
+            <p class="program-desc ">An e-Adhigam student is one who uses the tablet for 35 minutes per subject per week and attempts 2 tests (diagnostic test/remedial test/homework) per subject per week
+                An e-Adhigam teacher is one who uses the tablet for 1 hour per week & assigns 2 personalized homeworks to students</p>
+        </div>
+    </div>
+</div>
+
+<div class="custom-tab-group-wrapper">
+    <mat-tab-group [selectedIndex]="tabIndex" mat-align-tabs="start" animationDuration="0ms"
+        (selectedTabChange)="onTabChanged($event)" appFullScreen>
+        <!-- <div *ngIf="checkReport('student_metrics', 'bigNumber1')" id="bignumber1">
+            <app-pmposhan-bignumber-metrics (exportReportData)="importBigNumberMetrics($event)"></app-pmposhan-bignumber-metrics>
+        </div> -->
+        <mat-tab label='Teacher Status' *ngIf="tabs.includes('Teacher Status')">
+            <app-implementation-status-tab [bigNumberMetrics]="bigNumberMetrics"
+                *ngIf="selectedTabLabel === 'Teacher Status'"></app-implementation-status-tab>
+        </mat-tab>
+    
+        <mat-tab label='Student Status' *ngIf="tabs.includes('Student Status')">
+            <app-progress-status-tab [bigNumberMetrics]="bigNumberMetrics" *ngIf="selectedTabLabel === 'Student Status'"></app-progress-status-tab>
+        </mat-tab>
+
+    </mat-tab-group>
+</div>

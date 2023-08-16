@@ -173,6 +173,14 @@ routes = [
           ),
         canLoad: [AuthGuard]
       },
+      {
+        path: 'eadhigam',
+        loadChildren: () =>
+            import('./views/eadhigam/pmposhan.module').then(
+                (module) => module.PmPoshanModule
+            ),
+        canLoad: [AuthGuard]
+      }
     ],
   },
 ];

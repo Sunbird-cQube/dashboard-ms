@@ -5,16 +5,16 @@
 export const environment = {
   production: false,
   google_analytics_tracking_id: "UA-260554959-3",
-  // apiURL: 'https://qr.staging.cqube.samagra.io',
-  apiURL: 'http://localhost:3008',
-  stateCode: "NA",
+  //apiURL: 'https://qr.staging.cqube.samagra.io',
+ apiURL: 'https://cqube-demo.samagra.io/api/queryBuilder',
+  stateCode: "HR",
   numberFormat: {
     reports: {
       locale: 'en-IN',
       format: 'short'
     }
   },
-  config: "NVSK",
+  config: "VSK",
 
 };
 

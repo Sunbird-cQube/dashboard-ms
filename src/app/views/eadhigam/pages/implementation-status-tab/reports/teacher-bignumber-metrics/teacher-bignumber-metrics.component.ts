@@ -3,15 +3,15 @@ import { DataService } from 'src/app/core/services/data.service';
 import { RbacService } from 'src/app/core/services/rbac-service.service';
 import { WrapperService } from 'src/app/core/services/wrapper.service';
 import { buildQuery, parseRbacFilter, parseTimeSeriesQuery } from 'src/app/utilities/QueryBuilder';
-import { config } from 'src/app/views/pmposhan/config/pmposhan_config';
+import { config } from 'src/app/views/eadhigam/config/eadhigam_config';
 
 @Component({
-  selector: 'app-pmposhan-bignumber-metrics',
-  templateUrl: './pmposhan-bignumber-metrics.component.html',
-  styleUrls: ['./pmposhan-bignumber-metrics.component.scss']
+  selector: 'app-teacher-bignumber-metrics',
+  templateUrl: './teacher-bignumber-metrics.component.html',
+  styleUrls: ['./teacher-bignumber-metrics.component.scss']
 })
-export class PmposhanBignumberMetricsComponent implements OnInit {
-  reportName: string = 'student_metrics';
+export class TeacherBignumberMetricsComponent implements OnInit {
+  reportName: string = 'teacher_metrics';
   filters: any = [];
   levels: any;
   reportData: any = [];

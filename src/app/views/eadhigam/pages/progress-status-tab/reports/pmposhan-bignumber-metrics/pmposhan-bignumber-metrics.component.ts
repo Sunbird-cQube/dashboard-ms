@@ -3,7 +3,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { RbacService } from 'src/app/core/services/rbac-service.service';
 import { WrapperService } from 'src/app/core/services/wrapper.service';
 import { buildQuery, parseRbacFilter, parseTimeSeriesQuery } from 'src/app/utilities/QueryBuilder';
-import { config } from 'src/app/views/pmposhan/config/pmposhan_config';
+import { config } from 'src/app/views/eadhigam/config/eadhigam_config';
 
 @Component({
   selector: 'app-pmposhan-bignumber-metrics',

@@ -13,7 +13,7 @@
 <div class="custom-tab-group-wrapper">
     <mat-tab-group [selectedIndex]="tabIndex" mat-align-tabs="start" animationDuration="0ms"
         (selectedTabChange)="onTabChanged($event)" appFullScreen>
-        <div *ngIf="checkReport('pmposhan_metrics', 'bigNumber1')" id="bignumber1">
+        <div *ngIf="checkReport('student_metrics', 'bigNumber1')" id="bignumber1">
             <app-pmposhan-bignumber-metrics (exportReportData)="importBigNumberMetrics($event)"></app-pmposhan-bignumber-metrics>
         </div>
 
