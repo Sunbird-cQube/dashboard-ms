@@ -3,16 +3,15 @@ import { DataService } from 'src/app/core/services/data.service';
 import { RbacService } from 'src/app/core/services/rbac-service.service';
 import { WrapperService } from 'src/app/core/services/wrapper.service';
 import { buildQuery, parseRbacFilter, parseTimeSeriesQuery } from 'src/app/utilities/QueryBuilder';
-import { config } from 'src/app/views/diksha/config/diksha_config';
+import { config } from 'src/app/views/pm-shri/config/pm_shri_config';
 
 @Component({
-  selector: 'app-etb-bignumbers',
-  templateUrl: './etb-bignumbers.component.html',
-  styleUrls: ['./etb-bignumbers.component.scss']
+  selector: 'app-bignumber-metrics',
+  templateUrl: './bignumber-metrics.component.html',
+  styleUrls: ['./bignumber-metrics.component.scss']
 })
-export class EtbBignumbersComponent implements OnInit {
-
-  reportName: string = 'diksha_metrics';
+export class BignumberMetricsComponent implements OnInit {
+  reportName: string = 'pmShri_metrics';
   filters: any = [];
   levels: any;
   reportData: any = [];
@@ -61,7 +60,6 @@ export class EtbBignumbersComponent implements OnInit {
         return true
       })
     }
-
     Object.keys(queries).forEach(async (key: any, index: any) => {
       if (key.toLowerCase().includes('comparison')) {
         let endDate = new Date();
@@ -76,15 +74,12 @@ export class EtbBignumbersComponent implements OnInit {
       let query = buildQuery(onLoadQuery, defaultLevel, this.levels, this.filters, this.startDate, this.endDate, key, this.compareDateRange);
 
       if (query && key.indexOf('bigNumber') > -1) {
-        if (Array.isArray(options?.bigNumber)) {
-          options.bigNumber = options?.bigNumber[Number(this.rbacDetails?.role)];
-        }
-
         let metricOptions = {
           bigNumber: {
             title: Array.isArray(options?.bigNumber?.title) ? options?.bigNumber?.title?.[index] : options?.bigNumber?.title,
             property: Array.isArray(options?.bigNumber?.property) ? options?.bigNumber?.property?.[index] : options?.bigNumber?.property,
-            valueSuffix: Array.isArray(options?.bigNumber?.valueSuffix) ? options?.bigNumber?.valueSuffix?.[index] : options?.bigNumber?.valueSuffix
+            valueSuffix: Array.isArray(options?.bigNumber?.valueSuffix) ? options?.bigNumber?.valueSuffix?.[index] : options?.bigNumber?.valueSuffix,
+            formatter: Array.isArray(options?.bigNumber?.formatter) ? options?.bigNumber?.formatter?.[index] : options?.bigNumber?.formatter,
           }
         }
         let metricData = await this._dataService.getBigNumberReportData(query, metricOptions, 'averagePercentage', this.reportData);
@@ -95,5 +90,4 @@ export class EtbBignumbersComponent implements OnInit {
       }
     })
   }
-
 }

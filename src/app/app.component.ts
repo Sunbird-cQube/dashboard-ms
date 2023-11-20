@@ -1,5 +1,4 @@
 import { Component, HostListener } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Event, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
@@ -18,7 +17,7 @@ declare var dataLayer: Array<any>;
 export class AppComponent {
   title = 'cQube National';
   loadingDataImg: boolean = false;
-  constructor(private translate: TranslateService, private titleService: Title,
+  constructor(private titleService: Title,
     private router: Router, private activatedRoute: ActivatedRoute, public config: AppConfig, private http: HttpClient, private pageTrackerService: PageTrackerService) {
     // translate.setDefaultLang('en');
     // translate.use('en');
